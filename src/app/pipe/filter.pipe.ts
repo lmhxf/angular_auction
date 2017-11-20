@@ -1,7 +1,7 @@
 /**
  * Created by zhoufei on 2017/11/20.
  */
-import { Pipe } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
   name: 'filter'

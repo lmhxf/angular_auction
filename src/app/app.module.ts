@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
+import { InMemoryWebApiModule} from 'angular-in-memory-web-api';
+
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -15,6 +17,8 @@ import { Code404Component } from './code404/code404.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { HomeComponent } from './home/home.component';
 import { ProductService } from './shared/product.service';
+import {FilterPipe} from "./pipe/filter.pipe";
+import {ProductsData} from "./shared/data";
 
 @NgModule({
   declarations: [
@@ -28,13 +32,16 @@ import { ProductService } from './shared/product.service';
     Code404Component,
     ProductDetailComponent,
     HomeComponent,
+    //管道
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InMemoryWebApiModule.forRoot(ProductsData)
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]

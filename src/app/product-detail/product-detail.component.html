@@ -1,19 +1,35 @@
 <div class='thumbnail'>
     <img src="http://placehold.it/820x230" />
     <div>
-        <h4 class="pull-right">{{product.price}}</h4>
-        <h4>{{product.title}}</h4>
-        <p>{{product.desc}}</p>
+        <h4 class="pull-right">{{product?.price}}</h4>
+        <h4>{{product?.title}}</h4>
+        <p>{{product?.desc}}</p>
     </div>
     <div>
-        <p class="pull-right">{{comments.length}}</p>
+        <p class="pull-right">{{comments?.length}}</p>
         <p>
-            <app-start [rating]='product.rating'></app-start>
+            <app-start [rating]='product?.rating'></app-start>
         </p>
     </div>
 </div>
 
 <div class="well">
+  <div>
+    <button class="btn btn-success" (click)="isCommentHidden = !isCommentHidden">发表评论</button>
+  </div>
+  <div [hidden]="isCommentHidden">
+    <div>
+      <!--如果输入属性叫rating,输出属性为rating+change,可写为[(rating)]-->
+      <app-start [(rating)]="newRating" [readonly]="false"></app-start>
+    </div>
+    <div>
+      <textarea [(ngModel)]="newComment"></textarea>
+    </div>
+    <div>
+      <button class="btn" (click)="addComment()">提交</button>
+    </div>
+  </div>
+
     <div class="row" *ngFor='let comment of comments'>
         <hr>
         <div class="col-md-12">
